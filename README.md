@@ -1,10 +1,10 @@
 # Vue Calculator
 
-A much simpler version of my Yew calculator written in Vue 3
+A much simpler version of my [Yew calculator](https://github.com/andythedishwasher/yew-calculator) re-written in Vue 3
 
 # Why?
 
-I wrote this as a massive simplification of an [equivalent app](https://github.com/andythedishwasher/yew-calculator) I recently built with the Yew framework in Rust which is currently in development. The goal was to see just how few lines of code were actually needed to achieve the result with the same level of memory safety, which it seems I achieved. In all, this app is 221 lines long. The Yew app, in comparison, is built from a 311-line Rust file which has to be bundled into wasm and js files which then work together to reproduce the content in the DOM. That's great if you need the deep granular memory management features Rust provides in the course of optimizing performance on a large-scale, speed-sensitive project, but this is basically a pocket calculator.
+I wrote this as a massive simplification of an equivalent app I recently built with the Yew framework in Rust which is currently in development. The goal was to see just how few lines of code were actually needed to achieve the result with the same level of memory safety, which it seems I achieved. In all, this app is 221 lines long. The Yew app, in comparison, is built from a 311-line Rust file which has to be bundled into wasm and js files which then work together to reproduce the content in the DOM. That's great if you need the deep granular memory management features Rust provides in the course of optimizing performance on a large-scale, speed-sensitive project, but this is basically a pocket calculator.
 
 The big idea I took away from this brief foray into the Vue framework was that just because Rust is beautiful, performant, and safe doesn't mean it's the best choice for everything. That said, I think I derived a lot of benefit in the process of working through the logic from having to follow Rust's mutability and ownership rules. It forced me to consider exactly when and where things would change and wouldn't allow me to proceed until I had worked out a solution that wouldn't result in a memory leak. This resulted in a somewhat more laborious logic design process, but ultimately yielded memory-safe code that I found it quite simple to translate into dynamic JS since I really only had to put all the variables and logical operations in the same scopes in order to ensure that everything updated at the right time.
 

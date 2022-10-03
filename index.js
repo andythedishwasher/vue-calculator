@@ -10,7 +10,9 @@ createApp({
         }
     },
     methods: {
-        eval (ops) {
+        eval () {
+            let ops = this.operands
+            
             if (ops.length == 0) {
                 return 0
             }
@@ -19,21 +21,17 @@ createApp({
             }
             switch (this.operator) {
                 case '': return ops[0]
-                case '+': {
-                    let result = parseFloat(ops[1]) + parseFloat(ops[0])
-                    return result
+                case '+': {                    
+                    return parseFloat(ops[1]) + parseFloat(ops[0])
                 }
                 case '-': {
-                    let result = parseFloat(ops[1]) - parseFloat(ops[0])
-                    return result
+                    return parseFloat(ops[1]) - parseFloat(ops[0])
                 }
                 case '*': {
-                    let result = parseFloat(ops[1]) * parseFloat(ops[0])
-                    return result
+                    return parseFloat(ops[1]) * parseFloat(ops[0])
                 }
                 case '/': {
-                    let result = parseFloat(ops[1]) / parseFloat(ops[0])
-                    return result
+                    return parseFloat(ops[1]) / parseFloat(ops[0])
                 }
                 default: return ops[0]
             }
@@ -48,32 +46,26 @@ createApp({
             if (this.editMode == true) {
                 this.rehydrate(parseFloat(this.display))
             }
-            let result = this.eval(this.operands)
-            console.log(result)
+            let result = this.eval()
             this.rehydrate(result)
             this.operator = e.target.innerHTML.toString()
             this.display = '0'
             this.editMode = false
-            console.log(this.operands)
-            console.log(parseFloat(2) * parseFloat(0.9))
         },
-        clear (e) {
+        clear () {
             this.display = '0'
             this.operands = []
             this.operator = ''
             this.editMode = false
-            console.log(this.operands)
         },
-        equals (e) {
-            console.log(this.operator)
-            let result = this.eval(this.operands)
+        equals () {
+            let result = this.eval()
             this.display = result.toString()
             this.rehydrate(result)
             this.operator = ''
             this.editMode = false
-            console.log(this.operands)
         },
-        decimal (e) {
+        decimal () {
             if (this.display.includes('.')) {
                 return
             }
@@ -81,9 +73,8 @@ createApp({
                 this.display = '0.0'
                 this.editMode = true 
             }
-            console.log(this.operands)
         },
-        zero (e) {
+        zero () {
             if(this.editMode) {
                 this.display += '0'
             }
@@ -99,7 +90,6 @@ createApp({
                 this.display += e.target.innerHTML.toString()
             }
             this.rehydrate(parseFloat(this.display))
-            console.log(this.operands)
         }
     }
 }).mount('#app');

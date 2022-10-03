@@ -72,6 +72,8 @@ createApp({
             if (!this.editMode) {
                 this.display = '0.0'
                 this.editMode = true 
+            } else {
+                this.display += '.'
             }
         },
         zero () {
